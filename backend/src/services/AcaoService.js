@@ -53,5 +53,15 @@ module.exports = {
                     aceito(results)
                 })
         })
+    },
+
+    remocao: (id) => {
+        return new Promise((aceito, rejeitado) => {
+            db.query('DELETE FROM Acao WHERE id = ?', [id], (error, results) => {
+                if (error) { rejeitado(error); return; }
+                aceito(results)
+            })
+        })
     }
+
 }

@@ -71,5 +71,13 @@ module.exports = {
         }
 
         res.json(json)
+    },
+
+    remocao: async (req, res) => {
+        let json = { error: '', result: {} }
+
+        await AcaoService.remocao(req.params.id)
+
+        res.json(json)
     }
 }
