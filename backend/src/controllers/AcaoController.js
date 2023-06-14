@@ -43,7 +43,30 @@ module.exports = {
                 descricao,
                 tipo
             }
-        }else{
+        } else {
+            json.error = 'Campos não enviados'
+        }
+
+        res.json(json)
+    },
+
+    atualizacao: async (req, res) => {
+        let json = { error: '', result: {} }
+
+        let id = req.params.id
+        let nome = req.body.nome
+        let descricao = req.body.descricao
+        let tipo = req.body.tipo
+
+        if (id && nome && descricao && tipo) {
+            await AcaoService.atualizacao(id, nome, descricao, tipo)
+            json.result = {
+                id,
+                nome,
+                descricao,
+                tipo
+            }
+        } else {
             json.error = 'Campos não enviados'
         }
 
