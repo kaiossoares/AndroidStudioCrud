@@ -21,5 +21,21 @@ module.exports = {
                 }
             })
         })
+    },
+
+    inclusao: (nome, descricao, tipo) => {
+        return new Promise((aceito, rejeitado) => {
+
+            db.query('INSERT INTO Acao (nome, descricao, tipo) VALUES (?, ?, ?);',
+                [nome, descricao, tipo],
+                (error, results) => {
+                    if (error) {
+                        console.log(error);
+                        rejeitado(error);
+                        return;
+                    }
+                    aceito(results.insertId)
+                })
+        })
     }
 }

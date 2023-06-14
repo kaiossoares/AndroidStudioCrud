@@ -27,5 +27,26 @@ module.exports = {
         }
 
         res.json(json)
+    },
+
+    inclusao: async (req, res) => {
+        let json = { error: '', result: {} }
+        let nome = req.body.nome
+        let descricao = req.body.descricao
+        let tipo = req.body.tipo
+
+        if (nome && descricao && tipo) {
+            let AcaoId = await AcaoService.inclusao(nome, descricao, tipo)
+            json.result = {
+                id: AcaoId,
+                nome,
+                descricao,
+                tipo
+            }
+        }else{
+            json.error = 'Campos não enviados'
+        }
+
+        res.json(json)
     }
 }
