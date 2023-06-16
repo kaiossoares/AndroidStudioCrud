@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.content.Intent
+import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,5 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         adapter = RecyclerViewAdapter ()
         recyclerView.adapter = adapter
+
+        val btnAdd = findViewById<Button>(R.id.btn_add)
+        btnAdd.setOnClickListener {
+            // Criar um Intent para iniciar a nova atividade
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
+
 }
