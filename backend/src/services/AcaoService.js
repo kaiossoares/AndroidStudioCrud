@@ -22,7 +22,7 @@ module.exports = {
             })
         })
     },
-
+ 
     inclusao: (nome, descricao, tipo) => {
         return new Promise((aceito, rejeitado) => {
 

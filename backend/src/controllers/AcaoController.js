@@ -2,19 +2,19 @@ const AcaoService = require('../services/AcaoService')
 
 module.exports = {
     recuperacaoDeTodos: async (req, res) => {
-        let json = { error: '', result: [] }
+        let result = []
 
         let acoes = await AcaoService.recuperacaoDeTodos()
 
         for (let i in acoes) {
-            json.result.push({
+            result.push({
                 id: acoes[i].id,
                 nome: acoes[i].nome,
                 descricao: acoes[i].descricao,
                 tipo: acoes[i].tipo,
             })
         }
-        res.json(json)
+        res.json(result)
     },
 
     recuperacaoDeUm: async (req, res) => {
