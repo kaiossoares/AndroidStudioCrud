@@ -1,6 +1,7 @@
 package com.example.frontend.activity
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.example.frontend.network.RetrofitInitializer
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,8 +31,13 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         fetchDataFromApi()
-    }
 
+        val btnRegisterPage = findViewById<Button>(R.id.btnRegisterPage)
+        btnRegisterPage.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     private fun fetchDataFromApi() {
         val endpoint = RetrofitInitializer.retrofit.create(Endpoint::class.java)
@@ -52,4 +59,5 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
 }

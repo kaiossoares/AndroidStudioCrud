@@ -6,8 +6,17 @@ const bodyParser = require('body-parser')
 const routes = require('./routes')
 
 const server = express()
+server.use(express.json())
 server.use(cors())
 server.use(bodyParser.urlencoded({extended:false}))
+
+server.use((req, res, next) => {
+    console.time("request")
+    console.log("started request using "+req.method+" in "+req.url)
+    next()
+    console.log("finished request in "+req.url)
+    console.timeEnd("request")
+})
 
 server.use('/api', routes)
 
