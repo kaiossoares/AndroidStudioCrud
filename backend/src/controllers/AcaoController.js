@@ -17,17 +17,21 @@ module.exports = {
         res.json(result)
     },
 
-    recuperacaoDeUm: async (req, res) => {
-        let json = { error: '', result: {} }
-        let id = req.params.id
-        let acao = await AcaoService.recuperacaoDeUm(id)
+        recuperacaoDeUm: async (req, res) => {
+            let json = { error: '', result: {} }
+            let id = req.params.id
+            let acao = await AcaoService.recuperacaoDeUm(id)
 
-        if (acao) {
-            json.result = acao
-        }
-
-        res.json(json)
-    },
+            console.log(id)
+            console.log(acao)
+        
+            if (acao) {
+                json.result = acao
+            }
+        
+            res.json([json.result])
+        },
+    
 
     inclusao: async (req, res) => {
         let json = { error: '', result: {} }

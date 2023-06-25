@@ -6,9 +6,10 @@ const bodyParser = require('body-parser')
 const routes = require('./routes')
 
 const server = express()
-server.use(express.json())
+
 server.use(cors())
 server.use(bodyParser.urlencoded({extended:false}))
+server.use(express.json())
 
 server.use((req, res, next) => {
     console.time("request")

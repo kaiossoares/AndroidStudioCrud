@@ -32,23 +32,31 @@ class MainActivity : AppCompatActivity() {
 
         fetchDataFromApi()
 
+        adapter.setOnItemClickListener(object : RecyclerViewAdapter.OnItemClickListener {
+            override fun onItemClick(acao: Acao) {
+                val intent = Intent(this@MainActivity, AlterActivity::class.java)
+                startActivity(intent)
+            }
+        })
+
         val btnRegisterPage = findViewById<Button>(R.id.btnRegisterPage)
         btnRegisterPage.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     private fun fetchDataFromApi() {
         val endpoint = RetrofitInitializer.retrofit.create(Endpoint::class.java)
-        val call = endpoint.getTodasAcoes()
 
         endpoint.getTodasAcoes().enqueue(object : Callback<List<Acao>> {
             override fun onResponse(call: Call<List<Acao>>, response: Response<List<Acao>>) {
                 if (response.isSuccessful) {
                     val acoes = response.body()
                     if (acoes != null) {
-                        adapter = RecyclerViewAdapter(acoes)
+                        val acoesOrdenadas = acoes.sortedBy { it.id }
+                        adapter = RecyclerViewAdapter(acoesOrdenadas)
                         recyclerView.adapter = adapter
                     }
                 }
@@ -58,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                 println("Erro ao fazer requisição!")
             }
         })
+
     }
 
 }

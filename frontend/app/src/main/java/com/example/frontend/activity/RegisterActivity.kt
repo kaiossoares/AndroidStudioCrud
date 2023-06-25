@@ -1,5 +1,6 @@
 package com.example.frontend.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -13,7 +14,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.util.Log
-
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var editTextNome: EditText
@@ -22,12 +22,13 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var btnCadastrar: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        title = "Cadastrar Ação"
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        editTextNome = findViewById(R.id.editTextNome)
-        editTextTipo = findViewById(R.id.editTextTipo)
-        editTextDescricao = findViewById(R.id.editTextDescricao)
+        editTextNome = findViewById(R.id.registerTextNome)
+        editTextTipo = findViewById(R.id.registerTextTipo)
+        editTextDescricao = findViewById(R.id.registerTextDescricao)
         btnCadastrar = findViewById(R.id.btnCadastrar)
 
         btnCadastrar.setOnClickListener {
@@ -42,7 +43,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun salvarAcao(acao: Acao) {
-        Log.d("RegisterActivity", "Chamando salvarAcao()")
 
         val endpoint = RetrofitInitializer.retrofit.create(Endpoint::class.java)
         val call = endpoint.salvarAcao(acao)
@@ -50,11 +50,12 @@ class RegisterActivity : AppCompatActivity() {
         call.enqueue(object : Callback<Acao> {
             override fun onResponse(call: Call<Acao>, response: Response<Acao>) {
                 if (response.isSuccessful) {
-                    Log.d("RegisterActivity", "Resposta da API bem-sucedida")
                     Toast.makeText(this@RegisterActivity, "Ação cadastrada com sucesso!", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                    startActivity(intent)
                     finish()
                 } else {
-                    Log.d("RegisterActivity", "Resposta da API com erro")
                     Toast.makeText(this@RegisterActivity, "Erro ao cadastrar ação.", Toast.LENGTH_SHORT).show()
                 }
             }

@@ -3,45 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.RegisterActivity">
+    android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/registerTextTipo"
+        android:id="@+id/editTextNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:hint="Nome"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="12dp"/>
+
+    <EditText
+        android:id="@+id/editTextTipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Tipo"
         android:padding="12dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-16dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNome"
+        android:layout_marginBottom="420dp"/>
 
     <EditText
-        android:id="@+id/registerTextNome"
+        android:id="@+id/editTextDescricao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="Nome"
-        android:padding="12dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-16dp" />
-
-    <EditText
-        android:id="@+id/registerTextDescricao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="232dp"
         android:hint="Descrição"
         android:lines="5"
         android:padding="12dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-16dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTipo"
+        android:layout_marginBottom="250dp"/>
 
     <Button
-        android:id="@+id/btnCadastrar"
+        android:id="@+id/btnAlterar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cadastrar"
+        android:text="Alterar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
