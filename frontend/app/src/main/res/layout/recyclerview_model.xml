@@ -11,10 +11,11 @@
     android:foreground="?selectableItemBackground"
     android:clickable="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="end">
 
         <TextView
             android:id="@+id/text_nome"
@@ -24,8 +25,7 @@
             android:textSize="25sp"
             android:layout_marginTop="6dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            tools:text="XPML11"/>
+            android:layout_marginEnd="10dp"/>
 
         <TextView
             android:id="@+id/text_tipo"
@@ -34,9 +34,19 @@
             android:textSize="20sp"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            tools:text="tipo da ação"/>
+            android:layout_marginEnd="0dp"
+            android:layout_below="@id/text_nome"/>
 
-    </LinearLayout>
+        <ImageButton
+            android:id="@+id/btn_excluir"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Ícone de Excluir"
+            android:src="@drawable/remove_icon"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

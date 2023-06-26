@@ -16,4 +16,7 @@ interface Endpoint {
 
     @PUT("/api/acao/{id}")
     fun atualizarAcao(@Path("id") id: Int, @Body acao: Acao): Call<Acao>
+
+    @DELETE("/api/acao/{id}")
+    fun excluirAcao(@Path("id") id: Int): Call<Void>
 }

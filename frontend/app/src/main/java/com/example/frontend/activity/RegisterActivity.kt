@@ -21,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var editTextDescricao: EditText
     private lateinit var btnCadastrar: Button
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         title = "Cadastrar Ação"
         super.onCreate(savedInstanceState)

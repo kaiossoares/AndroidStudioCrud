@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = RecyclerViewAdapter(emptyList())
+        adapter = RecyclerViewAdapter(mutableListOf())
+
         recyclerView.adapter = adapter
 
         fetchDataFromApi()
@@ -44,7 +45,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     private fun fetchDataFromApi() {
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                     val acoes = response.body()
                     if (acoes != null) {
                         val acoesOrdenadas = acoes.sortedBy { it.id }
-                        adapter = RecyclerViewAdapter(acoesOrdenadas)
+                        adapter = RecyclerViewAdapter(acoesOrdenadas.toMutableList())
                         recyclerView.adapter = adapter
                     }
                 }
